@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+    
+    let compScore = 0;
+    let playerScore = 0;
+    
+    function computerPlay() {
+        let RPS = ['rock', 'paper', 'scissors'];
+        let compChoice = RPS[Math.floor(Math.random() * RPS.length)];
+        return compChoice;
+    }
+
+function playRound() {
+    let computerSelection = computerPlay();
+    let playerSelection = prompt('Choose Your Weapon').toLowerCase();
+        
+if (computerSelection == playerSelection) {
+    console.log('We are Same-Same. Different, but Still Same');
+} else if (computerSelection == 'rock' && playerSelection == 'paper') {
+    playerScore++; console.log('Winner Winner Chicken Dinner!');
+} else if (computerSelection == 'paper' && playerSelection == 'scissors') {
+    playerScore++; console.log('You cut em!');
+} else if (computerSelection == 'scissors' && playerSelection == 'rock') {
+    playerScore++; console.log('Rock n Roll!');
+} else if (computerSelection == 'scissors' && playerSelection == 'paper') {
+    compScore++; console.log("At least you tried");
+} else if (computerSelection == 'paper' && playerSelection == 'rock') {
+    compScore++; console.log('Sometimes your best just isn\'t good enough');
+} else if (computerSelection == 'rock' && playerSelection == 'scissors') {
+    compScore++; console.log('LOSER!!');
+} else { console.log('OOPS, Something Went Wrong');
+    }
+        }
+
+function game() {
+    for (i=0; i<5; i++) {
+    playRound();
+    }
+}
+
+game();
+if (playerScore > compScore) {
+    console.log('You are the Champion! ' + playerScore + ' to ' + compScore);
+} else if (playerScore < compScore) {
+    console.log('You Suck!! ' + playerScore + ' to ' + compScore);
+} else { console.log('At Least You didnt Lose ' + playerScore + ' to ' + compScore);
+    }
+    
+  
+
+  </script>
+</body>
+</html>
