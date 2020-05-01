@@ -5,8 +5,37 @@
   <meta charset="UTF-8"/>
 </head>
 <body>
+  
+<div id="rpsButtons">
+    <button id="rock" class="button">Rock!</button>
+    <button id="paper" class="button">Paper!</button>
+    <button id="scissors" class="button">Scissors!</button>
+</div>
+ 
+<h3 id='your'>Your Score</h3>
+<br>
+    <div id='yourScore'></div>
+<br>
+<br>
+<h3 id='comp'>Computer's Score</h3>
+<br>
+    <div id='compsScore'></div>
+<br>
+<br>
+<h3 id='ties'>Ties</h3>
+<br>
+    <div id='tie'></div>
+
   <script>
-    
+//on button click play a round of RPS
+   let buttonChoice = document.querySelectorAll('button');
+   
+   buttonChoice.forEach((button) =>{
+        button.addEventListener('click', (e) => {
+            playRound(); 
+   });
+   });
+   
     let compScore = 0;
     let playerScore = 0;
     
@@ -18,42 +47,39 @@
 
 function playRound() {
     let computerSelection = computerPlay();
-    let playerSelection = prompt('Choose Your Weapon').toLowerCase();
-        
+    let playerSelection = prompt('Choose your weapon')
+    let playerDiv = document.getElementById('yourScore');  
+    let compDiv = document.getElementById('compsScore');
+    let tieDiv = document.getElementById('tie'); 
+
+
 if (computerSelection == playerSelection) {
-    console.log('We are Same-Same. Different, but Still Same');
+    tieDiv.textContent += 'We are Same-Same. Different, but Still Same | ';
 } else if (computerSelection == 'rock' && playerSelection == 'paper') {
-    playerScore++; console.log('Winner Winner Chicken Dinner!');
+    playerScore++; playerDiv.textContent +='Winner Winner Chicken Dinner! | ';
 } else if (computerSelection == 'paper' && playerSelection == 'scissors') {
-    playerScore++; console.log('You cut em!');
+    playerScore++; playerDiv.textContent +='You cut em! | ';
 } else if (computerSelection == 'scissors' && playerSelection == 'rock') {
-    playerScore++; console.log('Rock n Roll!');
+    playerScore++; playerDiv.textContent +='Rock n Roll! | ';
 } else if (computerSelection == 'scissors' && playerSelection == 'paper') {
-    compScore++; console.log("At least you tried");
+    compScore++; compDiv.textContent += 'At least you tried | ';
 } else if (computerSelection == 'paper' && playerSelection == 'rock') {
-    compScore++; console.log('Sometimes your best just isn\'t good enough');
+    compScore++; compDiv.textContent +='Sometimes your best just isn\'t good enough | ';
 } else if (computerSelection == 'rock' && playerSelection == 'scissors') {
-    compScore++; console.log('LOSER!!');
-} else { console.log('OOPS, Something Went Wrong');
+    compScore++; compDiv.textContent +='LOSER!! | ';
+} else { alert('OOPS, Something Went Wrong');
     }
-        }
 
-function game() {
-    for (i=0; i<5; i++) {
-    playRound();
-    }
+if (playerScore && compScore === 0) {
+    return;
+} else if (playerScore === 5) {
+    alert('You are the Champion');
+} else if (compScore === 5) {
+    alert('You Lose!');
+} else { alert('play again!');
 }
-
-game();
-if (playerScore > compScore) {
-    console.log('You are the Champion! ' + playerScore + ' to ' + compScore);
-} else if (playerScore < compScore) {
-    console.log('You Suck!! ' + playerScore + ' to ' + compScore);
-} else { console.log('At Least You didnt Lose ' + playerScore + ' to ' + compScore);
-    }
-    
-  
-
-  </script>
+}
+        
+    </script>
 </body>
 </html>
