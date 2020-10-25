@@ -10,30 +10,45 @@
     <button id="rock" class="button">Rock!</button>
     <button id="paper" class="button">Paper!</button>
     <button id="scissors" class="button">Scissors!</button>
+    <button id="reset" class="button">Reset!</button>
 </div>
  
 <h3 id='your'>Your Score</h3>
 <br>
-    <div id='yourScore'></div>
+    <div class ='div' id='yourScore'></div>
 <br>
 <br>
 <h3 id='comp'>Computer's Score</h3>
 <br>
-    <div id='compsScore'></div>
+    <div class ='div' id='compsScore'></div>
 <br>
 <br>
 <h3 id='ties'>Ties</h3>
 <br>
-    <div id='tie'></div>
+    <div class ='div' id='tie'></div>
 
   <script>
+
+let resetButton = document.getElementById('reset');
+    resetButton.addEventListener('click', () => { 
+        document.getElementById('yourScore').innerHTML = "";
+        document.getElementById('compsScore').innerHTML = "";
+        document.getElementById('tie').innerHTML = ""; 
+    });
+
 //on button click play a round of RPS
    let buttonChoice = document.querySelectorAll('button');
    
+   function getId(e) {
+        let id = e.target.id;
+        return id;
+   }
+
    buttonChoice.forEach((button) =>{
         button.addEventListener('click', (e) => {
-            playRound(); 
-   });
+            id = getId(e);    
+            playRound(id); 
+        });
    });
    
     let compScore = 0;
@@ -45,13 +60,12 @@
         return compChoice;
     }
 
-function playRound() {
+function playRound(id) {
     let computerSelection = computerPlay();
-    let playerSelection = prompt('Choose your weapon')
+    let playerSelection = id;
     let playerDiv = document.getElementById('yourScore');  
     let compDiv = document.getElementById('compsScore');
     let tieDiv = document.getElementById('tie'); 
-
 
 if (computerSelection == playerSelection) {
     tieDiv.textContent += 'We are Same-Same. Different, but Still Same | ';
